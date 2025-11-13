@@ -1,10 +1,15 @@
 [build]
-  base    = "client"
+  # Run build from repo root (where this package.json is)
   command = "npm run build"
-  publish = "dist"
+  # Where the Vite build outputs the static frontend
+  # (adjust this to match your vite.config outDir)
+  publish = "dist/public"
 
+[build.environment]
+  NODE_VERSION = "18.20.3"
+
+# SPA fallback so client-side routing works
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to   = "/index.html"
   status = 200
-
