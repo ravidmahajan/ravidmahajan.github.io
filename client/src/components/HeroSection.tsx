@@ -119,45 +119,24 @@ export default function HeroSection({ name, tagline, imageUrl, socialLinks = [] 
         style={{ opacity, scale }}
       >
         <motion.div 
-          className="space-y-8 order-2 md:order-1"
+          className="space-y-6 order-2 md:order-1 pt-12 md:pt-16"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <div className="space-y-4">
-            <motion.div 
-              className="flex flex-wrap gap-2"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              {skills.map((skill, index) => (
-                <motion.div
-                  key={skill}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Badge variant="secondary" className="text-sm px-3 py-1 bg-primary/10 text-primary border-primary/20" data-testid={`badge-skill-${skill.toLowerCase().replace(/\//g, '-')}`}>
-                    {skill}
-                  </Badge>
-                </motion.div>
-              ))}
-            </motion.div>
+          <div className="space-y-3">
             <div>
               <motion.h1 
                 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent" 
                 data-testid="text-hero-name"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
               >
                 {name}
               </motion.h1>
               <motion.p
-                className="text-xl md:text-2xl lg:text-3xl mt-3 font-medium tracking-wide bg-gradient-to-r from-foreground/70 via-primary/80 to-foreground/70 bg-clip-text text-transparent leading-relaxed"
+                className="text-lg md:text-xl lg:text-2xl mt-2 font-medium tracking-wide bg-gradient-to-r from-foreground/70 via-primary/80 to-foreground/70 bg-clip-text text-transparent leading-relaxed"
                 style={{
                   fontFamily: "'Noto Sans Devanagari', 'Mukta', 'Poppins', system-ui, sans-serif",
                   lineHeight: '1.5',
@@ -167,56 +146,77 @@ export default function HeroSection({ name, tagline, imageUrl, socialLinks = [] 
                 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
               >
                 रवि महाजन
               </motion.p>
             </div>
           </div>
           <motion.p 
-            className="text-lg md:text-xl text-muted-foreground leading-relaxed font-serif" 
+            className="text-base md:text-lg text-muted-foreground leading-relaxed font-serif" 
             data-testid="text-hero-tagline"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
             {tagline}
           </motion.p>
           <motion.div 
-            className="flex flex-wrap gap-6 pt-4"
+            className="flex flex-wrap gap-2 mt-6 md:mt-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            {skills.map((skill, index) => (
+              <motion.div
+                key={skill}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 0.7 + index * 0.1 }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Badge variant="secondary" className="text-xs px-2.5 py-0.5 bg-primary/10 text-primary border-primary/20" data-testid={`badge-skill-${skill.toLowerCase().replace(/\//g, '-')}`}>
+                  {skill}
+                </Badge>
+              </motion.div>
+            ))}
+          </motion.div>
+          <motion.div 
+            className="flex flex-wrap gap-4 md:gap-6 pt-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
           >
             <motion.div 
-              className="flex items-center gap-3 text-muted-foreground"
+              className="flex items-center gap-2 text-muted-foreground"
               whileHover={{ scale: 1.05, x: 5 }}
             >
               <div className="relative">
                 <div className="absolute inset-0 bg-primary/20 blur-md rounded-lg"></div>
-                <Cloud className="w-6 h-6 text-primary relative drop-shadow-lg" strokeWidth={2.5} />
+                <Cloud className="w-5 h-5 text-primary relative drop-shadow-lg" strokeWidth={2.5} />
               </div>
-              <span className="text-sm font-medium">Multi-Cloud</span>
+              <span className="text-xs md:text-sm font-medium">Multi-Cloud</span>
             </motion.div>
             <motion.div 
-              className="flex items-center gap-3 text-muted-foreground"
+              className="flex items-center gap-2 text-muted-foreground"
               whileHover={{ scale: 1.05, x: 5 }}
             >
               <div className="relative">
                 <div className="absolute inset-0 bg-primary/20 blur-md rounded-lg"></div>
-                <Code2 className="w-6 h-6 text-primary relative drop-shadow-lg" strokeWidth={2.5} />
+                <Code2 className="w-5 h-5 text-primary relative drop-shadow-lg" strokeWidth={2.5} />
               </div>
-              <span className="text-sm font-medium">6+ Years</span>
+              <span className="text-xs md:text-sm font-medium">6+ Years</span>
             </motion.div>
             <motion.div 
-              className="flex items-center gap-3 text-muted-foreground"
+              className="flex items-center gap-2 text-muted-foreground"
               whileHover={{ scale: 1.05, x: 5 }}
             >
               <div className="relative">
                 <div className="absolute inset-0 bg-primary/20 blur-md rounded-lg"></div>
-                <Cpu className="w-6 h-6 text-primary relative drop-shadow-lg" strokeWidth={2.5} />
+                <Cpu className="w-5 h-5 text-primary relative drop-shadow-lg" strokeWidth={2.5} />
               </div>
-              <span className="text-sm font-medium">AI/ML Expert</span>
+              <span className="text-xs md:text-sm font-medium">AI/ML Expert</span>
             </motion.div>
           </motion.div>
           

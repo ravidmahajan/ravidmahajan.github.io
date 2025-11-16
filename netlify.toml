@@ -8,9 +8,6 @@
 
 [build.environment]
   NODE_VERSION = "18.20.3"
-  # Note: NETLIFY_AUTH_TOKEN and NETLIFY_SITE_ID should be set in Netlify Dashboard
-  # Go to Site settings → Environment variables to add them securely
-  # They are encrypted by Netlify and never exposed in client-side code
 
 # SPA fallback so client-side routing works
 [[redirects]]

@@ -165,9 +165,9 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
                     {project.title}
                   </h3>
                   
-                  <p className="text-base leading-relaxed text-foreground/90 mb-4 flex-1" data-testid={`text-project-description-${project.id}`}>
+                  <div className="text-base leading-relaxed text-foreground/90 mb-4 flex-1 whitespace-pre-line" data-testid={`text-project-description-${project.id}`}>
                     {project.description}
-                  </p>
+                  </div>
                   
                   {project.technologies && project.technologies.length > 0 && (
                     <div className="flex flex-wrap gap-2 mt-4">
