@@ -125,12 +125,11 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
                 <div className="relative z-10 flex-1">
                   <div className="flex items-start justify-between mb-4">
                     <motion.div
-                      className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 via-primary/10 to-accent/20 flex items-center justify-center mb-3 relative shadow-md"
+                      className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-3 relative shadow-md border border-primary/30"
                       whileHover={{ rotate: 360, scale: 1.1 }}
                       transition={{ duration: 0.6 }}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 rounded-xl blur-sm"></div>
-                      <Code2 className="w-7 h-7 text-primary relative drop-shadow-lg" strokeWidth={2.5} fill="currentColor" fillOpacity={0.1} />
+                      <Code2 className="w-7 h-7 text-primary relative z-10" strokeWidth={2.5} style={{ opacity: 1 }} />
                     </motion.div>
                     <div className="flex gap-2">
                       {project.githubUrl && (

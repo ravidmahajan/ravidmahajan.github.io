@@ -38,7 +38,7 @@ export default function HeroSection({ name, tagline, imageUrl, socialLinks = [] 
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
-  const skills = ["Full Stack", "Cloud", "AI/ML", "DevOps"];
+  const skills = ["Full Stack", "Cloud", "AI/ML", "DevOps", "NLP", "CV"];
 
   return (
     <section 
@@ -132,15 +132,32 @@ export default function HeroSection({ name, tagline, imageUrl, socialLinks = [] 
                 </motion.div>
               ))}
             </motion.div>
-            <motion.h1 
-              className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent" 
-              data-testid="text-hero-name"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              {name}
-            </motion.h1>
+            <div>
+              <motion.h1 
+                className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent" 
+                data-testid="text-hero-name"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                {name}
+              </motion.h1>
+              <motion.p
+                className="text-xl md:text-2xl lg:text-3xl mt-3 font-medium tracking-wide bg-gradient-to-r from-foreground/70 via-primary/80 to-foreground/70 bg-clip-text text-transparent leading-relaxed"
+                style={{
+                  fontFamily: "'Noto Sans Devanagari', 'Mukta', 'Poppins', system-ui, sans-serif",
+                  lineHeight: '1.5',
+                  paddingTop: '0.25rem',
+                  paddingBottom: '0.25rem',
+                  display: 'block'
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              >
+                रवि महाजन
+              </motion.p>
+            </div>
           </div>
           <motion.p 
             className="text-lg md:text-xl text-muted-foreground leading-relaxed font-serif" 

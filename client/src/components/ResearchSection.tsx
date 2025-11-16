@@ -84,12 +84,11 @@ export default function ResearchSection({ topics }: ResearchSectionProps) {
               >
                 <div className="flex items-start gap-4 mb-4">
                   <motion.div 
-                    className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br from-accent/20 via-accent/10 to-primary/20 flex items-center justify-center relative shadow-md"
+                    className="flex-shrink-0 w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center relative shadow-md border border-accent/30"
                     whileHover={{ rotate: 360, scale: 1.1 }}
                     transition={{ duration: 0.6 }}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-accent/30 to-primary/30 rounded-xl blur-sm"></div>
-                    <BookOpen className="w-7 h-7 text-accent relative drop-shadow-lg" strokeWidth={2.5} fill="currentColor" fillOpacity={0.1} />
+                    <BookOpen className="w-7 h-7 text-accent relative z-10" strokeWidth={2.5} style={{ opacity: 1 }} />
                   </motion.div>
                   <div className="flex-1">
                     <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors" data-testid={`text-topic-title-${topic.id}`}>

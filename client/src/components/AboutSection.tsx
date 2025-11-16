@@ -140,11 +140,10 @@ export default function AboutSection({ about }: AboutSectionProps) {
                     transition={{ duration: 0.5 }}
                   >
                     <motion.div
-                      className="w-20 h-20 mx-auto mb-3 rounded-2xl bg-gradient-to-br from-primary/20 via-primary/10 to-accent/20 flex items-center justify-center relative shadow-lg"
+                      className="w-20 h-20 mx-auto mb-3 rounded-2xl bg-primary/10 flex items-center justify-center relative shadow-lg border border-primary/30"
                       whileHover={{ scale: 1.1, rotate: 5 }}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 rounded-2xl blur-sm"></div>
-                      <item.icon className="w-10 h-10 text-primary relative drop-shadow-xl" strokeWidth={2.5} fill="currentColor" fillOpacity={0.1} />
+                      <item.icon className="w-10 h-10 text-primary relative z-10" strokeWidth={2.5} style={{ opacity: 1 }} />
                     </motion.div>
                   </motion.div>
                   <div className="relative z-10">

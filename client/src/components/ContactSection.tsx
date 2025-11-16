@@ -98,6 +98,17 @@ export default function ContactSection({ email, phone, location }: ContactSectio
           </motion.p>
         </motion.div>
         
+        <motion.div
+          className="max-w-2xl mx-auto mb-12 md:mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <p className="text-base md:text-lg text-foreground/80 leading-relaxed text-center font-serif">
+            I love meeting new people so feel free to send me an email if you&apos;d like to chat about anything (e.g. related research, unrelated research, just want to say hi)! Likewise, if you&apos;re a high-schooler or undergrad anywhere interested in research or grad school, I&apos;m always happy to give advice if you feel it&apos;d be useful.
+          </p>
+        </motion.div>
+        
         <motion.div 
           className="flex flex-col items-center space-y-6"
           variants={containerVariants}
@@ -118,12 +129,11 @@ export default function ContactSection({ email, phone, location }: ContactSectio
                     data-testid="button-email"
                   >
                     <motion.div 
-                      className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 via-primary/10 to-accent/20 flex items-center justify-center flex-shrink-0 relative shadow-md"
+                      className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 relative shadow-md border border-primary/30"
                       whileHover={{ rotate: 360, scale: 1.1 }}
                       transition={{ duration: 0.5 }}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 rounded-xl blur-sm"></div>
-                      <Mail className="w-6 h-6 text-primary relative drop-shadow-lg" strokeWidth={2.5} fill="currentColor" fillOpacity={0.1} />
+                      <Mail className="w-6 h-6 text-primary relative z-10" strokeWidth={2.5} style={{ opacity: 1 }} />
                     </motion.div>
                     <div className="flex-1">
                       <div className="text-xs text-muted-foreground mb-1">Email</div>
@@ -148,12 +158,11 @@ export default function ContactSection({ email, phone, location }: ContactSectio
                       data-testid="button-phone"
                     >
                       <motion.div 
-                        className="w-14 h-14 rounded-xl bg-gradient-to-br from-accent/20 via-accent/10 to-primary/20 flex items-center justify-center flex-shrink-0 relative shadow-md"
+                        className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 relative shadow-md border border-accent/30"
                         whileHover={{ rotate: 360, scale: 1.1 }}
                         transition={{ duration: 0.5 }}
                       >
-                        <div className="absolute inset-0 bg-gradient-to-br from-accent/30 to-primary/30 rounded-xl blur-sm"></div>
-                        <Phone className="w-6 h-6 text-accent relative drop-shadow-lg" strokeWidth={2.5} fill="currentColor" fillOpacity={0.1} />
+                        <Phone className="w-6 h-6 text-accent relative z-10" strokeWidth={2.5} style={{ opacity: 1 }} />
                       </motion.div>
                       <div className="flex-1">
                         <div className="text-xs text-muted-foreground mb-1">Phone</div>
@@ -174,12 +183,11 @@ export default function ContactSection({ email, phone, location }: ContactSectio
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <motion.div 
-                      className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 via-primary/10 to-accent/20 flex items-center justify-center flex-shrink-0 relative shadow-md"
+                      className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 relative shadow-md border border-primary/30"
                       whileHover={{ rotate: 360, scale: 1.1 }}
                       transition={{ duration: 0.5 }}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 rounded-xl blur-sm"></div>
-                      <MapPin className="w-6 h-6 text-primary relative drop-shadow-lg" strokeWidth={2.5} fill="currentColor" fillOpacity={0.1} />
+                      <MapPin className="w-6 h-6 text-primary relative z-10" strokeWidth={2.5} style={{ opacity: 1 }} />
                     </motion.div>
                     <div className="flex-1">
                       <div className="text-xs text-muted-foreground mb-1">Location</div>
@@ -212,6 +220,17 @@ export default function ContactSection({ email, phone, location }: ContactSectio
               </a>
             </Button>
           </motion.div>
+        </motion.div>
+        
+        <motion.div
+          className="mt-12 md:mt-16 pt-8 border-t border-primary/20"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.6, delay: 1 }}
+        >
+          <p className="text-center text-sm text-muted-foreground">
+            © 2025 Ravi Mahajan. All rights reserved.
+          </p>
         </motion.div>
       </div>
     </section>

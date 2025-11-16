@@ -117,6 +117,14 @@ export default function Navigation() {
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all"></span>
             </button>
             <button
+              onClick={() => scrollToSection("awards")}
+              className="text-base font-medium text-muted-foreground hover:text-primary transition-colors relative group"
+              data-testid="link-nav-awards"
+            >
+              Awards
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all"></span>
+            </button>
+            <button
               onClick={() => scrollToSection("contact")}
               className="text-base font-medium text-muted-foreground hover:text-primary transition-colors relative group"
               data-testid="link-nav-contact"
@@ -270,6 +278,13 @@ export default function Navigation() {
               data-testid="link-mobile-research"
             >
               Research
+            </button>
+            <button
+              onClick={() => scrollToSection("awards")}
+              className="text-2xl font-medium text-foreground hover:text-primary transition-colors"
+              data-testid="link-mobile-awards"
+            >
+              Awards
             </button>
             <button
               onClick={() => scrollToSection("contact")}

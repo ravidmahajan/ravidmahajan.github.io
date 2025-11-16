@@ -2,7 +2,7 @@ import { GraduationCap } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 interface Education {
   level: string;
@@ -11,6 +11,7 @@ interface Education {
   location?: string;
   year?: string;
   relevantCourses?: string[];
+  logoUrl?: string;
 }
 
 interface EducationSectionProps {
@@ -45,32 +46,18 @@ export default function EducationSection({ educations }: EducationSectionProps) 
   };
 
   const getLevelColor = (level: string) => {
-    const levelLower = level.toLowerCase();
-    if (levelLower.includes("masters")) return "from-primary to-accent";
-    if (levelLower.includes("bachelors")) return "from-accent to-primary";
-    if (levelLower.includes("diploma")) return "from-primary/80 to-accent/80";
-    return "from-muted to-muted-foreground";
+    // All education levels use the same gradient color
+    return "from-primary to-accent";
   };
 
   const getLevelBadgeVariant = (level: string) => {
-    const levelLower = level.toLowerCase();
-    if (levelLower.includes("masters")) return "default";
-    if (levelLower.includes("bachelors")) return "secondary";
-    return "outline";
+    // All education levels use the same variant
+    return "default";
   };
 
   const getLevelBadgeStyle = (level: string) => {
-    const levelLower = level.toLowerCase();
-    if (levelLower.includes("masters")) {
-      return "bg-primary text-primary-foreground border-primary font-semibold shadow-sm";
-    }
-    if (levelLower.includes("bachelors")) {
-      return "bg-accent text-accent-foreground border-accent font-semibold shadow-sm";
-    }
-    if (levelLower.includes("diploma")) {
-      return "bg-gradient-to-r from-primary/30 to-accent/30 text-primary border-primary/50 font-semibold";
-    }
-    return "bg-muted/50 text-muted-foreground border-border font-semibold";
+    // All education levels use the same color scheme
+    return "bg-primary text-primary-foreground border-primary font-semibold shadow-sm";
   };
 
   return (
@@ -149,71 +136,124 @@ export default function EducationSection({ educations }: EducationSectionProps) 
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            {educations.map((education, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="relative pl-20 md:pl-24"
-              >
-                {/* Timeline dot */}
-                <motion.div
-                  className="absolute left-6 md:left-10 top-6 w-4 h-4 rounded-full bg-gradient-to-br from-primary to-accent border-4 border-background shadow-lg"
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-                  transition={{ duration: 0.5, delay: 0.7 + index * 0.2 }}
-                  whileHover={{ scale: 1.5 }}
-                />
-                
-                <motion.div
-                  whileHover={{ scale: 1.02, x: 10 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <Card className="p-6 md:p-8 hover-elevate transition-all border-l-4 border-l-primary group relative overflow-hidden">
-                    <motion.div
-                      className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${getLevelColor(education.level)} rounded-full blur-2xl -mr-16 -mt-16 opacity-0 group-hover:opacity-20 transition-opacity`}
-                      initial={false}
-                    />
-                    
-                    <div className="relative z-10">
-                      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
-                            <Badge 
-                              variant={getLevelBadgeVariant(education.level) as any}
-                              className={`text-xs md:text-sm px-3 py-1 border ${getLevelBadgeStyle(education.level)}`}
-                              data-testid={`badge-level-${index}`}
-                            >
-                              {education.level}
-                            </Badge>
-                          </div>
-                          <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors" data-testid={`text-institution-${index}`}>
-                            {education.institution}
-                          </h3>
-                          <div className="flex flex-wrap items-center gap-2 mb-2">
-                            {education.location && (
-                              <p className="text-sm md:text-base text-muted-foreground" data-testid={`text-location-${index}`}>
-                                {education.location}
-                              </p>
-                            )}
-                            {education.year && (
-                              <>
-                                {education.location && <span className="text-muted-foreground">•</span>}
-                                <p className="text-sm md:text-base font-medium text-primary" data-testid={`text-year-${index}`}>
-                                  {education.year}
-                                </p>
-                              </>
-                            )}
-                          </div>
-                        </div>
-                        <motion.div
-                          className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-primary/20 via-primary/10 to-accent/20 flex items-center justify-center relative shadow-md"
-                          whileHover={{ rotate: 360, scale: 1.1 }}
-                          transition={{ duration: 0.6 }}
-                        >
-                          <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 rounded-xl blur-sm"></div>
-                          <GraduationCap className="w-8 h-8 text-primary relative drop-shadow-lg" strokeWidth={2.5} fill="currentColor" fillOpacity={0.1} />
-                        </motion.div>
+            {educations.map((education, index) => {
+              const LogoDisplay = ({ logoUrl, institution }: { logoUrl?: string; institution: string }) => {
+                const [imageError, setImageError] = useState(false);
+                const [imageLoaded, setImageLoaded] = useState(false);
+
+                // Show fallback if no URL or error occurred
+                if (!logoUrl) {
+                  return (
+                    <>
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 rounded-xl blur-sm"></div>
+                      <GraduationCap className="w-8 h-8 md:w-10 md:h-10 text-primary relative z-10 drop-shadow-lg" strokeWidth={2.5} fill="currentColor" fillOpacity={0.1} />
+                    </>
+                  );
+                }
+
+                // Show fallback if image error occurred
+                if (imageError) {
+                  return (
+                    <>
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 rounded-xl blur-sm"></div>
+                      <GraduationCap className="w-8 h-8 md:w-10 md:h-10 text-primary relative z-10 drop-shadow-lg" strokeWidth={2.5} fill="currentColor" fillOpacity={0.1} />
+                    </>
+                  );
+                }
+
+                return (
+                  <>
+                    {/* Loading placeholder */}
+                    {!imageLoaded && !imageError && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/10 to-accent/10 animate-pulse">
+                        <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin"></div>
                       </div>
+                    )}
+                    {/* Image */}
+                    <img
+                      src={logoUrl}
+                      alt={`${institution} logo`}
+                      className={`w-full h-full object-contain p-2 relative z-10 transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                      onLoad={() => {
+                        setImageLoaded(true);
+                        setImageError(false);
+                      }}
+                      onError={(e) => {
+                        console.error(`Failed to load logo for ${institution}:`, logoUrl);
+                        setImageError(true);
+                        setImageLoaded(false);
+                      }}
+                      loading="lazy"
+                      style={{ maxWidth: '100%', maxHeight: '100%' }}
+                    />
+                  </>
+                );
+              };
+
+              return (
+                <motion.div
+                  key={index}
+                  variants={itemVariants}
+                  className="relative pl-20 md:pl-24"
+                >
+                  {/* Timeline dot */}
+                  <motion.div
+                    className="absolute left-6 md:left-10 top-6 w-4 h-4 rounded-full bg-gradient-to-br from-primary to-accent border-4 border-background shadow-lg"
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+                    transition={{ duration: 0.5, delay: 0.7 + index * 0.2 }}
+                    whileHover={{ scale: 1.5 }}
+                  />
+                  
+                  <motion.div
+                    whileHover={{ scale: 1.02, x: 10 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <Card className="p-6 md:p-8 hover-elevate transition-all border-l-4 border-l-primary group relative overflow-hidden">
+                      <motion.div
+                        className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${getLevelColor(education.level)} rounded-full blur-2xl -mr-16 -mt-16 opacity-0 group-hover:opacity-20 transition-opacity`}
+                        initial={false}
+                      />
+                      
+                      <div className="relative z-10">
+                        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-3 mb-2">
+                              <Badge 
+                                variant={getLevelBadgeVariant(education.level) as any}
+                                className={`text-xs md:text-sm px-3 py-1 border ${getLevelBadgeStyle(education.level)}`}
+                                data-testid={`badge-level-${index}`}
+                              >
+                                {education.level}
+                              </Badge>
+                            </div>
+                            <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors" data-testid={`text-institution-${index}`}>
+                              {education.institution}
+                            </h3>
+                            <div className="flex flex-wrap items-center gap-2 mb-2">
+                              {education.location && (
+                                <p className="text-sm md:text-base text-muted-foreground" data-testid={`text-location-${index}`}>
+                                  {education.location}
+                                </p>
+                              )}
+                              {education.year && (
+                                <>
+                                  {education.location && <span className="text-muted-foreground">•</span>}
+                                  <p className="text-sm md:text-base font-medium text-primary" data-testid={`text-year-${index}`}>
+                                    {education.year}
+                                  </p>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                          <motion.div
+                            className="flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-xl bg-white dark:bg-card flex items-center justify-center relative shadow-md border border-primary/20 overflow-hidden min-h-[80px] md:min-h-[96px]"
+                            whileHover={{ scale: 1.1, rotate: 5 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <LogoDisplay logoUrl={education.logoUrl} institution={education.institution} />
+                          </motion.div>
+                        </div>
                       
                       <p className="text-base md:text-lg leading-relaxed text-foreground/90 mb-3" data-testid={`text-description-${index}`}>
                         {education.description}
@@ -247,7 +287,8 @@ export default function EducationSection({ educations }: EducationSectionProps) 
                   </Card>
                 </motion.div>
               </motion.div>
-            ))}
+            );
+            })}
           </motion.div>
         </div>
       </div>

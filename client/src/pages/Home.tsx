@@ -7,6 +7,7 @@ import PersonalSection from "@/components/PersonalSection";
 import ResearchSection from "@/components/ResearchSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import BlogSection from "@/components/BlogSection";
+import AwardsSection from "@/components/AwardsSection";
 import ContactSection from "@/components/ContactSection";
 import Navigation from "@/components/Navigation";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -249,6 +250,7 @@ export default function Home() {
       institution: "University at Buffalo, The State University of New York",
       location: "New York",
       year: "Jun. 2023",
+      logoUrl: "https://logo.clearbit.com/buffalo.edu",
       relevantCourses: [
         "Digital Product Management",
         "System Analysis & Design",
@@ -263,6 +265,7 @@ export default function Home() {
       institution: "University of Pune",
       location: "Pune, India",
       year: "Feb. 2018",
+      logoUrl: "https://logo.clearbit.com/unipune.ac.in",
       relevantCourses: [
         "Data Structures & Algorithms",
         "OOPS",
@@ -278,13 +281,62 @@ export default function Home() {
       institution: "University of Mumbai",
       location: "Mumbai, India",
       year: "May. 2017",
+      logoUrl: "https://logo.clearbit.com/mu.ac.in",
     },
     {
       level: "High School",
       description: "Computer Science",
-      institution: "Birla College",
+      institution: "Birla College of Arts, Science & Commerce",
       location: "Mumbai, India",
       year: "May 2013",
+      logoUrl: "/birla-logo.jpg",
+      // To add Birla College logo:
+      // 1. Visit https://www.bkbirlacollegekalyan.com or https://en.wikipedia.org/wiki/Birla_College_of_Arts,_Science_%26_Commerce
+      // 2. Right-click the logo image and "Save image as..."
+      // 3. Save it as "birla-logo.png" in the "client/public" folder
+      // 4. Uncomment the logoUrl line above
+    },
+  ];
+
+  const awards = [
+    {
+      type: "award" as const,
+      title: "Innovation Star Award 2018",
+      issuer: "HSBC",
+      description: "Awarded for innovative technology transformation in Banking",
+      date: "2018",
+    },
+    {
+      type: "certification" as const,
+      title: "Certified Scrum Product Owner® (CSPO®)",
+      description: "Showcasing expertise in Agile methodologies and product management",
+      date: "May 2023",
+    },
+    {
+      type: "certification" as const,
+      title: "Microsoft Azure Fundamentals",
+      description: "Exhibiting proficiency in cloud computing and Azure services",
+      date: "Apr 2023",
+    },
+    {
+      type: "certification" as const,
+      title: "Generative AI Course for Product Managers/Owners",
+      organization: "KnowledgeHut Solutions Pvt. Ltd.",
+      description: "Successfully completed the Generative AI Course",
+      date: "Oct 2024",
+    },
+    {
+      type: "certification" as const,
+      title: "Genpact Tech Architects Mastery Program",
+      description: "Successfully completed the Tech Architects Mastery Program",
+      date: "Jan 2025",
+    },
+    {
+      type: "certification" as const,
+      title: "Lean Six Sigma Green Belt Training",
+      organization: "MELIORA CONSULTING",
+      description: "Successfully completed Lean Six Sigma Green Belt Training",
+      date: "2024",
     },
   ];
 
@@ -309,6 +361,7 @@ export default function Home() {
       <PersonalSection images={personalImages} />
       <ResearchSection topics={researchTopics} />
       <BlogSection posts={blogPosts} />
+      <AwardsSection awards={awards} />
       <ContactSection
         email="ravi.d.mahajan@gmail.com"
         phone="+1 (716) 292-3111"
