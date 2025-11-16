@@ -109,10 +109,10 @@ export default function Home() {
   const projects = [
     {
       id: "1",
-      title: "CountryPedia",
+      title: "CountryPediaVerse",
       description: "A comprehensive Wikipedia for countries providing detailed information about countries worldwide. Built with modern web technologies and deployed on AWS.",
       technologies: ["React", "TypeScript", "AWS", "Amplify", "REST API"],
-      liveUrl: "https://master.d265t0m8hlc9w9.amplifyapp.com/",
+      liveUrl: "https://countrypediaverse.netlify.app/",
     },
     {
       id: "2",
@@ -308,15 +308,15 @@ export default function Home() {
     },
     {
       type: "certification" as const,
-      title: "Certified Scrum Product Owner® (CSPO®)",
-      description: "Showcasing expertise in Agile methodologies and product management",
-      date: "May 2023",
+      title: "Genpact Tech Architects Mastery Program",
+      description: "Successfully completed the Tech Architects Mastery Program",
+      date: "Jan 2025",
     },
     {
       type: "certification" as const,
-      title: "Microsoft Azure Fundamentals",
-      description: "Exhibiting proficiency in cloud computing and Azure services",
-      date: "Apr 2023",
+      title: "Certified ScrumMaster® (CSM®)",
+      description: "Demonstrating expertise in Scrum framework and Agile project management",
+      date: "Oct 2024",
     },
     {
       type: "certification" as const,
@@ -327,16 +327,22 @@ export default function Home() {
     },
     {
       type: "certification" as const,
-      title: "Genpact Tech Architects Mastery Program",
-      description: "Successfully completed the Tech Architects Mastery Program",
-      date: "Jan 2025",
-    },
-    {
-      type: "certification" as const,
       title: "Lean Six Sigma Green Belt Training",
       organization: "MELIORA CONSULTING",
       description: "Successfully completed Lean Six Sigma Green Belt Training",
       date: "2024",
+    },
+    {
+      type: "certification" as const,
+      title: "Certified Scrum Product Owner® (CSPO®)",
+      description: "Showcasing expertise in Agile methodologies and product management",
+      date: "May 2023",
+    },
+    {
+      type: "certification" as const,
+      title: "Microsoft Azure Fundamentals",
+      description: "Exhibiting proficiency in cloud computing and Azure services",
+      date: "Apr 2023",
     },
   ];
 
@@ -356,12 +362,12 @@ export default function Home() {
       />
       <ExperienceSection experiences={experiences} />
       <SkillsSection categories={skillsCategories} />
-      <EducationSection educations={educations} />
       <ProjectsSection projects={projects} />
-      <PersonalSection images={personalImages} />
       <ResearchSection topics={researchTopics} />
       <BlogSection posts={blogPosts} />
       <AwardsSection awards={awards} />
+      <EducationSection educations={educations} />
+      <PersonalSection images={personalImages} />
       <ContactSection
         email="ravi.d.mahajan@gmail.com"
         phone="+1 (716) 292-3111"

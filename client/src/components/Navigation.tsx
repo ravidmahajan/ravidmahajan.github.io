@@ -109,6 +109,14 @@ export default function Navigation() {
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all"></span>
             </button>
             <button
+              onClick={() => scrollToSection("projects")}
+              className="text-base font-medium text-muted-foreground hover:text-primary transition-colors relative group"
+              data-testid="link-nav-projects"
+            >
+              Projects
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all"></span>
+            </button>
+            <button
               onClick={() => scrollToSection("research")}
               className="text-base font-medium text-muted-foreground hover:text-primary transition-colors relative group"
               data-testid="link-nav-research"
@@ -122,6 +130,14 @@ export default function Navigation() {
               data-testid="link-nav-awards"
             >
               Awards
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all"></span>
+            </button>
+            <button
+              onClick={() => scrollToSection("blog")}
+              className="text-base font-medium text-muted-foreground hover:text-primary transition-colors relative group"
+              data-testid="link-nav-blog"
+            >
+              Blog
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all"></span>
             </button>
             <button
@@ -273,6 +289,13 @@ export default function Navigation() {
               Experience
             </button>
             <button
+              onClick={() => scrollToSection("projects")}
+              className="text-2xl font-medium text-foreground hover:text-primary transition-colors"
+              data-testid="link-mobile-projects"
+            >
+              Projects
+            </button>
+            <button
               onClick={() => scrollToSection("research")}
               className="text-2xl font-medium text-foreground hover:text-primary transition-colors"
               data-testid="link-mobile-research"
@@ -285,6 +308,13 @@ export default function Navigation() {
               data-testid="link-mobile-awards"
             >
               Awards
+            </button>
+            <button
+              onClick={() => scrollToSection("blog")}
+              className="text-2xl font-medium text-foreground hover:text-primary transition-colors"
+              data-testid="link-mobile-blog"
+            >
+              Blog
             </button>
             <button
               onClick={() => scrollToSection("contact")}
