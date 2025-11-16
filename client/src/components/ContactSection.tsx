@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import VisitorMap from "./VisitorMap";
 
 interface ContactSectionProps {
   email: string;
@@ -222,8 +223,10 @@ export default function ContactSection({ email, phone, location }: ContactSectio
           </motion.div>
         </motion.div>
         
+        <VisitorMap />
+        
         <motion.div
-          className="mt-12 md:mt-16 pt-8 border-t border-primary/20"
+          className="mt-8 pt-8 border-t border-primary/20"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.6, delay: 1 }}
